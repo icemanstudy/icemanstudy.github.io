@@ -18,7 +18,7 @@
   <meta name="author" content="iceman">
   <meta name="keywords" content="">
   
-  <title>gitee+hexo+smms打造免费个人博客 - iceman&#39;s blog</title>
+  <title>免费个人博客搭建(update 2024.4.15) - iceman&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -151,7 +151,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="gitee+hexo+smms打造免费个人博客">
+            <span class="h2" id="subtitle" title="免费个人博客搭建(update 2024.4.15)">
               
             </span>
 
@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.6k 字
     </span>
   
 
@@ -183,7 +183,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      17
        分钟
     </span>
   
@@ -213,7 +213,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">gitee+hexo+smms打造免费个人博客</h1>
+            <h1 style="display: none">免费个人博客搭建(update 2024.4.15)</h1>
             
             <div class="markdown-body">
               <p> 博客,英文名blog,大部分时候,是一个对外分(zhuang)享(bi)的地方.</p>
@@ -298,6 +298,13 @@
 <p>免费用户每月25个积分，每个积分抵扣1G存储或者1G流量。</p>
 </blockquote>
 <p>继续愉快的玩耍吧.</p>
+<p>2023.6.25更新.<br>gitee最近发布时总提示有违法违禁词.又不说是具体什么词.Issue中反馈也没人理.<br>看来是要彻底放弃了.<br>除了github pages,gitee pages,又找到一家名为Cloudflare Page:<a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a></p>
+<p>部署方式就不赘述了,按照步骤来即可.访问速度还行:<br><img src="https://res.cloudinary.com/xubingok/image/upload/v1713169198/blog/06163a3d7fbe0828c9996296933126a2.png" srcset="/img/loading.gif" lazyload></p>
+<p>更重要的是,可以和github集成,自动触发部署.  </p>
+<ol>
+<li>在存放源码的github仓库中设置app并关联Cloudflare:<br><img src="https://res.cloudinary.com/xubingok/image/upload/v1713169435/blog/72bc4d8d3705fc49be898bfd78439f85.png" srcset="/img/loading.gif" lazyload></li>
+<li>在Cloudflare中配置构建步骤:<br><img src="https://res.cloudinary.com/xubingok/image/upload/v1713169570/blog/4b7ee7d880e9b60f15a65d7f852fd5a6.png" srcset="/img/loading.gif" lazyload><br>这样写好文章以后推代码就自动触发hexo构建和部署,不用每次还要去gitee上手动点击了.</li>
+</ol>
 
             </div>
             <hr>

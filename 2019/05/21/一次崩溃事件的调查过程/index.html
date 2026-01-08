@@ -272,16 +272,14 @@
 <p>到底是哪个缓存有问题呢?能否把缓存拉出来分析,或者复制到另一台手机上看是否能重现?</p>
 <p>考虑到这是一台未root的oppo手机,中间尝试导出app私有目录下的相关文件未果.</p>
 <h3 id="接口breakpoint"><a href="#接口breakpoint" class="headerlink" title="接口breakpoint"></a>接口breakpoint</h3><p>既然不能用黑名单,那就在接口请求上面打断点好了.通过对启动接口调用使用二分法排除之后,终于确定了一个有问题的接口.</p>
-
-
+<p><img src="https://res.cloudinary.com/xubingok/image/upload/v1713171354/blog/f930d10fd39839d5e3e209d1171cd145.png" srcset="/img/loading.gif" lazyload></p>
 <p>原来这个libnative_lib.so竟然是接口下发的.</p>
 <blockquote>
 <p>libnative_lib.so并不是什么系统so.仅仅是一些c++官方教程里面喜欢拿这个当做默认名字.</p>
 </blockquote>
 <p>在这个接口打上断点后,可以维持5s左右不崩溃了,5s后接口超时,适用接口错误场景,会加载上次缓存数据,继续崩溃.</p>
 <p>原因找到了,接下来就是对这个配置接口做一些修改,看能否通过其开关配置停掉对应的so加载.</p>
-
-
+<p><img src="https://res.cloudinary.com/xubingok/image/upload/v1713171324/blog/35fc77b2cd3de6798bc3a26153753265.png" srcset="/img/loading.gif" lazyload></p>
 <p>改了下载路径后,终于不崩溃了.</p>
 <p>现在可以把问题抛给对应sdk提供方,让他们去寻找修复方案了.</p>
 <hr>

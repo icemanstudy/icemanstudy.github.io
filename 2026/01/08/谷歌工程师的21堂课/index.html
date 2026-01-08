@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar/icon.png">
+  <link rel="icon" href="/img/avatar/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="程序员职场必读">
+  <meta name="author" content="iceman">
+  <meta name="keywords" content="">
+  
+  <title>谷歌工程师的21堂课 - iceman&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"icemanbin.gitee.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":88,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>iceman's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="谷歌工程师的21堂课">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2026-01-08 19:31" pubdate>
+        2026年1月8日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">谷歌工程师的21堂课</h1>
+            
+            <div class="markdown-body">
+              <p>当我14年前加入谷歌时，我以为这份工作就是写好代码。我只说对了一部分。随着时间推移，我逐渐意识到那些卓越的工程师不一定是编程最好的——而是能驾驭代码之外一切的人：处理人际关系、组织政治、目标协同和模糊地带。</p>
+<p>这些经验都是我希望能早点知晓的。有些本该让我少走数月弯路，有些则花了数年才真正领悟。它们与技术细节无关——那些变化太快不值一提。这些是关于那些在项目与团队间反复出现的共性规律。</p>
+<p>我分享这些，是因为曾有许多工程师的无私经验让我获益良多。这算是我对这份馈赠的接力传递。</p>
+<h3 id="1-顶尖工程师痴迷于解决用户问题"><a href="#1-顶尖工程师痴迷于解决用户问题" class="headerlink" title="1.顶尖工程师痴迷于解决用户问题"></a>1.顶尖工程师痴迷于解决用户问题</h3><p>我们会本能地迷恋某项技术并寻找应用场景。我也犯过这个错。但真正创造价值的工程师会逆向思考：先深入理解用户痛点，再让解决方案自然浮现。<br>用户至上意味着要沉浸于客服工单、直面用户、观察使用痛点、不断追问”为什么”直到触及本质。真正理解问题的工程师，往往能找到比预期更简单的优雅方案。</p>
+<p>而带着预设方案出发的工程师，常常会堆砌复杂度来证明自己的方案。</p>
+<h3 id="2-正确很廉价，达成共识才是真功夫"><a href="#2-正确很廉价，达成共识才是真功夫" class="headerlink" title="2.正确很廉价，达成共识才是真功夫"></a>2.正确很廉价，达成共识才是真功夫</h3><p>你可以赢遍所有技术争论却输掉整个项目。我见过天才工程师因永远要做”最聪明的人”而积累 silent resentment（无声怨恨），代价就是后续出现”诡异的执行阻力”和”莫名其妙的抵制”。<br>关键不在于正确，而在于：明确讨论目标、为他人留出空间、对自己的笃定保持警惕。</p>
+<p>强观点，弱坚持——这不是缺乏信念，而是明白在不确定时的决策不应成为身份标签。</p>
+<h3 id="3-行动优于完美。先发布再迭代。烂文章可以修改，白纸永远无法编辑"><a href="#3-行动优于完美。先发布再迭代。烂文章可以修改，白纸永远无法编辑" class="headerlink" title="3.行动优于完美。先发布再迭代。烂文章可以修改，白纸永远无法编辑"></a>3.行动优于完美。先发布再迭代。烂文章可以修改，白纸永远无法编辑</h3><p>追求完美会让人瘫痪。我见过工程师为尚未建造的东西争论”完美架构”数周。真正的完美方案很少来自空想，而是与现实的碰撞。AI在很多方面能帮上忙。<br>先实现，再优化，再精进。把丑陋的原型给用户测试，写出混乱的设计初稿，发布让你略感尴尬的MVP。一周的真实反馈胜过一月理论空谈。</p>
+<p>行动产生清晰，分析瘫痪毫无产出。</p>
+<h3 id="4-清晰是资历，炫技是负债"><a href="#4-清晰是资历，炫技是负债" class="headerlink" title="4.清晰是资历，炫技是负债"></a>4.清晰是资历，炫技是负债</h3><p>写炫酷代码是工程师的本能冲动，这像是一种能力证明。<br>但当加入”时间”和”其他程序员”这两个变量后，清晰的代码就不再是风格选择——而是降低运维风险的必须。</p>
+<p>你的代码是给凌晨2点处理故障的陌生人看的战略备忘录。为他们而优化，而非为你自己。我尊重的资深工程师都学会了用清晰取代炫技。</p>
+<h3 id="5-创新是笔高利贷，用故障、招聘和认知负担偿还"><a href="#5-创新是笔高利贷，用故障、招聘和认知负担偿还" class="headerlink" title="5.创新是笔高利贷，用故障、招聘和认知负担偿还"></a>5.创新是笔高利贷，用故障、招聘和认知负担偿还</h3><p>把技术选型看作拥有有限”创新币”预算。每采用一项非标技术就花费一枚——你根本没多少库存。<br>重点不是”永不创新”，而是”只在核心价值点创新”。其他都应选择成熟方案，因为已知的风险才是可控的。</p>
+<p>“最适合的工具”常是”多数场景下最不差的工具”——因为维护动物园终将成为真实负担。</p>
+<h3 id="6-代码不会为你说话，人才会"><a href="#6-代码不会为你说话，人才会" class="headerlink" title="6.代码不会为你说话，人才会"></a>6.代码不会为你说话，人才会</h3><p>我曾以为杰出工作会自我证明。错了。代码在仓库里沉默不语。你的上司可能在会议中提到你，也可能不会。同事可能推荐你参与项目，也可能是别人。<br>在大机构里，决策常在你缺席的会议中，通过你未撰写的摘要，由那些只有5分钟处理12项优先级的人做出。如果没人在你缺席时能说清你的贡献，那你的价值就可有可无。</p>
+<p>这不是鼓吹自我推销，而是让价值链条对所有人可见——包括你自己。</p>
+<h3 id="7-最好的代码是你无需编写的代码"><a href="#7-最好的代码是你无需编写的代码" class="headerlink" title="7.最好的代码是你无需编写的代码"></a>7.最好的代码是你无需编写的代码</h3><p>工程师文化崇尚创造。没人因删除代码获得晋升——尽管删除常比新增更能改善系统。每少写一行代码，就少一行需要调试、维护和解释的内容。<br>构建前先问：”如果我们不做会怎样？”有时答案是”没什么坏结果”，那就是最佳方案。</p>
+<p>问题不在于工程师会不会写代码或用AI辅助，而在于我们太擅长编写，以至于忘了追问是否应该写。</p>
+<h3 id="8-规模效应下，连bug都有用户"><a href="#8-规模效应下，连bug都有用户" class="headerlink" title="8.规模效应下，连bug都有用户"></a>8.规模效应下，连bug都有用户</h3><p>用户量足够大时，所有可见行为都会成为依赖项——无论你是否承诺过。总有人抓取你的API、自动化你的特性、缓存你的bug。<br>这带来职业级洞见：不能把兼容性视为”维护”，而新功能才是”正事”。兼容性本身就是产品。</p>
+<p>设计淘汰方案时要像设计迁移方案：留足时间、提供工具、保持同理心。多数”API设计”实质是”API退休方案”。</p>
+<h3 id="9-多数”慢团队”实则是”错位团队”"><a href="#9-多数”慢团队”实则是”错位团队”" class="headerlink" title="9.多数”慢团队”实则是”错位团队”"></a>9.多数”慢团队”实则是”错位团队”</h3><p>项目拖延时，我们常归咎执行力：不够努力、技术选错、人手不足。通常这些都不是根本问题。<br>在大公司，团队是并发单元，但协作成本随团队数量几何级增长。多数低效实则是协同失效——各自构建错误内容，或以不兼容方式构建正确内容。</p>
+<p>资深工程师花更多时间澄清方向、接口和优先级，而非”更快写代码”，因为真正的瓶颈在这里。</p>
+<h3 id="10-专注可控之事，忽略不可控之事"><a href="#10-专注可控之事，忽略不可控之事" class="headerlink" title="10.专注可控之事，忽略不可控之事"></a>10.专注可控之事，忽略不可控之事</h3><p>在大公司，无数变量超出你控制：架构调整、管理决策、市场变化、产品转向。纠结这些只会带来焦虑而无行动力。<br>保持清醒高效的工程师会聚焦影响圈。你无法控制是否重组，但可控制工作质量、响应方式和学习收获。面对不确定性时，拆分问题并明确可执行动作。</p>
+<p>这不是被动接受，而是战略聚焦。耗费在不可控事项的能量，都是从可控事项偷来的。</p>
+<h3 id="11-抽象不消除复杂度，只是把账单留到你oncall时支付"><a href="#11-抽象不消除复杂度，只是把账单留到你oncall时支付" class="headerlink" title="11.抽象不消除复杂度，只是把账单留到你oncall时支付"></a>11.抽象不消除复杂度，只是把账单留到你oncall时支付</h3><p>每个抽象都在赌你不需要理解底层。有时你会赢，但总有例外——当抽象泄漏时，你必须知道脚下是什么。<br>资深工程师持续学习”底层”知识——不是出于怀旧，而是对凌晨3点独面故障时刻的敬畏。使用抽象栈，但要掌握其底层故障模式。</p>
+<h3 id="12-写作倒逼清晰。教是最好的学"><a href="#12-写作倒逼清晰。教是最好的学" class="headerlink" title="12.写作倒逼清晰。教是最好的学"></a>12.写作倒逼清晰。教是最好的学</h3><p>向他人解释概念时——通过文档、演讲、代码评审甚至与AI对话——我会暴露自己的认知盲区。让他人明白的过程，也让自己更明白。<br>这不是说通过教学就能成为外科医生，但在软件工程领域基本成立。</p>
+<p>这不仅是知识分享。更是自私的学习技巧。如果你认为自己懂了，试着简单解释它。卡壳之处就是理解尚浅的地方。</p>
+<p>教学是调试自己心智模型的过程。</p>
+<h3 id="13-奠定基础的工作无价却隐形"><a href="#13-奠定基础的工作无价却隐形" class="headerlink" title="13.奠定基础的工作无价却隐形"></a>13.奠定基础的工作无价却隐形</h3><p>胶水工作（文档、入职培训、跨团队协调、流程改进）至关重要。但若无意识承担，可能阻碍技术成长并导致 burnout。陷阱在于把这些当作”乐于助人”，而非明确、有限、可见的贡献。<br>要设定时限、轮值承担、转化为产物（文档/模板/自动化），并让贡献可见——而非视作性格特质。</p>
+<p>无价却隐形对你的职业生涯很危险。</p>
+<h3 id="14-如果每场辩论都赢，可能正在积累-silent-resistance"><a href="#14-如果每场辩论都赢，可能正在积累-silent-resistance" class="headerlink" title="14.如果每场辩论都赢，可能正在积累 silent resistance"></a>14.如果每场辩论都赢，可能正在积累 silent resistance</h3><p>我开始怀疑自己的笃定。当太容易”赢”时，通常出了问题。人们停止反对不是被说服，而是放弃尝试——这种分歧会体现在执行而非会议上。<br>真正的共识需要时间。必须真正理解其他观点，吸纳反馈，有时当众改变主意。</p>
+<p>短期的正确感远不如长期拥有愿意协作的伙伴重要。</p>
+<h3 id="15-当指标成为目标，就不再是指标"><a href="#15-当指标成为目标，就不再是指标" class="headerlink" title="15.当指标成为目标，就不再是指标"></a>15.当指标成为目标，就不再是指标</h3><p>所有暴露给管理层的指标终被操纵。无关恶意，而是人性使然——我们优化被测量的东西。<br>统计代码行数？得到更多行。追踪开发速度？得到膨胀的预估。</p>
+<p>资深做法：每个指标需求都搭配”速度+质量/风险”的对子。坚持解读趋势而非崇拜阈值。目标是洞察，不是监控。</p>
+<h3 id="16-承认无知比假装懂创造更多安全区"><a href="#16-承认无知比假装懂创造更多安全区" class="headerlink" title="16.承认无知比假装懂创造更多安全区"></a>16.承认无知比假装懂创造更多安全区</h3><p>资深工程师说”不知道”不是示弱——而是在创造安全空间。当领导者承认不确定时，就释放了他人效仿的信号。反之会形成集体假装理解的 culture，让问题潜伏直至爆发。<br>我见过从不承认困惑的团队 leader 造成的危害：无人提问、假设不受挑战、新人沉默因以为别人都懂。</p>
+<p>示范好奇心，就能带出真正学习的团队。</p>
+<h3 id="17-人脉网络比任何工作更持久"><a href="#17-人脉网络比任何工作更持久" class="headerlink" title="17.人脉网络比任何工作更持久"></a>17.人脉网络比任何工作更持久</h3><p>早期我只专注工作忽视 networking。回看这是个错误。注重人际的同事——内外兼修——收获数十年红利。<br>他们率先获知机会、快速搭建桥梁、获得角色推荐、与多年建立的信任伙伴共同创业。</p>
+<p>工作会逝，人脉长存。以好奇和慷慨经营，而非功利性社交。</p>
+<p>当需要改变时，往往是关系为你开门。</p>
+<h3 id="18-多数性能提升源于删减工作而非增加巧思"><a href="#18-多数性能提升源于删减工作而非增加巧思" class="headerlink" title="18.多数性能提升源于删减工作而非增加巧思"></a>18.多数性能提升源于删减工作而非增加巧思</h3><p>系统变慢时，本能是增加：缓存层、并行处理、更优算法。有时没错。但我见过更多性能提升来自追问：”有哪些计算根本不需要？”<br>删除不必要的工作几乎总比加速必要工作更有效。最快的代码是从不运行的代码。</p>
+<p>优化前先质疑工作存在的必要性。</p>
+<h3 id="19-流程为降低不确定性而存在，而非留痕追责"><a href="#19-流程为降低不确定性而存在，而非留痕追责" class="headerlink" title="19.流程为降低不确定性而存在，而非留痕追责"></a>19.流程为降低不确定性而存在，而非留痕追责</h3><p>优秀流程让协作更易、失败代价更低。糟糕流程是官僚戏剧——存在意义只为追责。<br>若说不出某流程如何降低风险或提升 clarity，那它很可能只是 overhead。</p>
+<p>当撰写流程文档耗时超过实际工作，就彻底本末倒置了。</p>
+<h3 id="20-终有一天，时间比金钱珍贵。请相应行事"><a href="#20-终有一天，时间比金钱珍贵。请相应行事" class="headerlink" title="20.终有一天，时间比金钱珍贵。请相应行事"></a>20.终有一天，时间比金钱珍贵。请相应行事</h3><p>职业初期我们用时间换金钱——这没错。但某个时刻起，等式反转。你会意识到时间才是不可再生资源。<br>我见过资深工程师为追逐晋升或几个百分点薪资耗尽心力。有些人得到了，但多数事后怀疑是否值得。</p>
+<p>重点不是”不努力”，而是”清楚交易内容，并 deliberate（有意地）抉择”。</p>
+<h3 id="21-没有捷径，但有复利"><a href="#21-没有捷径，但有复利" class="headerlink" title="21.没有捷径，但有复利"></a>21.没有捷径，但有复利</h3><p>专业能力源于刻意练习——持续突破舒适区、反思、重复。经年累月。无法压缩。<br>但希望在于：当学习创造新选项而非零散知识时，会产生复利。写作不为流量而为 clarity；构建可复用模块；将经验教训转化为决策手册。</p>
+<p>把职业视为复利而非彩票的工程师，往往走的更远。</p>
+<p>最后的话<br>21堂课看似很多，实则核心不过几点：保持好奇，保持谦逊，记住工作本质关乎人——你服务的用户与并肩的队友。</p>
+<p>工程师生涯足够漫长，容你犯许多错仍能领先。我最敬佩的不是从不犯错的人，而是从错误中学习、分享发现并持续前行的同行者。</p>
+<p>若你刚启程，请知前路愈行愈开阔。若你已深耕，愿这些经验引发共鸣。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%97%B2%E8%81%8A/">闲聊</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/22/nginx%E5%9C%A8vue%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%85%8D%E7%BD%AE%E5%BA%94%E7%94%A8/">
+                        <span class="hidden-mobile">nginx在vue项目中的配置应用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"7DiEYzgBskLT3mj2MxBV0ihe-gzGzoHsz","appKey":"rfIgwRMUNEo7pqoucFhculL9","placeholder":"说点什么","path":"window.location.pathname","avatar":"retro","meta":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

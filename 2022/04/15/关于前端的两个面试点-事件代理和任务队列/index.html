@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      1.8k 字
     </span>
   
 
@@ -183,7 +183,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      20
        分钟
     </span>
   
@@ -221,7 +221,13 @@
 <p>那么事件呢,先从最外面传递到最里面,这叫捕获.</p>
 <p>到了最里面那个元素,然后反过来向外传递,这叫冒泡.</p>
 <p>通常用的<em>addEventListener</em>,就是给某个元素加上了冒泡阶段的监听.<br>那么怎么在父元素上拦截掉这个事件呢?就需要添加捕获阶段的监听.</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">element.addEventListener(<br>  <span class="hljs-string">&#x27;click&#x27;</span>,<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> </span>&#123;<br>    e.preventDefault() <span class="hljs-comment">//阻止默认事件</span><br>  &#125;,<br>  <span class="hljs-literal">true</span><br>)<br></code></pre></td></tr></table></figure>
+<pre><code>element.addEventListener(
+  &#39;click&#39;,
+  function (e) &#123;
+    e.preventDefault() //阻止默认事件
+  &#125;,
+  true
+)</code></pre>
 <p>前两个参数就不解释了,第三个为true,就是捕获阶段监听,在捕获阶段可以调用方法阻止事件进一步往下传递,自然后续的冒泡也没有了.</p>
 <blockquote>
 <p>做过android的可以用onInterceptTouchEvent来理解下.一回事.</p>
@@ -229,17 +235,41 @@
 <h4 id="再来说事件代理-也叫事件委托"><a href="#再来说事件代理-也叫事件委托" class="headerlink" title="再来说事件代理,也叫事件委托:"></a>再来说事件代理,也叫事件委托:</h4><p>通过在父元素上加事件监听的方式,来处理子元素的事件.</p>
 <p>好处是什么呢?</p>
 <ol>
-<li>只用加一次.</li>
-<li>后续动态添加的子元素,也可以触发这个事件.</li>
+<li> 不用分别给每个子元素添加和删除事件.</li>
+<li> 子元素非常多时,可以提升性能.</li>
+<li> 后续动态添加的子元素,也可以触发这个事件.</li>
 </ol>
 <p>贴段代码,自己理解:</p>
 <p>传统方法:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, index) in data&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;handleClick(index)&quot;</span>&gt;</span><br>        Click Me<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>&lt;ul&gt;
+    &lt;li v-for=&quot;(item, index) in data&quot; @click=&quot;handleClick(index)&quot;&gt;
+        Click Me
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 <p>使用事件代理:</p>
-<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;handleClick&quot;</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, index) in data&quot;</span> <span class="hljs-attr">:data-index</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span></span><br><span class="xml">    </span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">item.text</span> &#125;&#125;</span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">handle<span class="hljs-constructor">Click(<span class="hljs-params">e</span>)</span> &#123;<br>  <span class="hljs-keyword">if</span> (e.target.nodeName.<span class="hljs-keyword">to</span><span class="hljs-constructor">LowerCase()</span><span class="hljs-operator"> === </span>&#x27;li&#x27;) &#123;<br>    const index = parse<span class="hljs-constructor">Int(<span class="hljs-params">e</span>.<span class="hljs-params">target</span>.<span class="hljs-params">dataset</span>.<span class="hljs-params">index</span>)</span><br>    this.<span class="hljs-keyword">do</span><span class="hljs-constructor">Something(<span class="hljs-params">index</span>)</span><br>  &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
+<pre><code>        &lt;ul @click=&quot;handleClick&quot;&gt;
+          &lt;li v-for=&quot;(item, index) in data&quot; :data-index=&quot;index&quot;&gt;
+            &#123;&#123; item.text &#125;&#125;
+          &lt;/li&gt;
+        &lt;/ul&gt;</code></pre>
+<!---->
 
+<pre><code>        handleClick(e) &#123;
+          if (e.target.nodeName.toLowerCase() === &#39;li&#39;) &#123;
+            const index = parseInt(e.target.dataset.index)
+            this.doSomething(index)
+          &#125;
+        &#125;,</code></pre>
+<p><strong>vue中需要使用事件代理吗?</strong></p>
+<blockquote>
+<p>不需要.</p>
+</blockquote>
+<p>事件代理的3个优势:</p>
+<ol>
+<li> vue的元素/元素销毁时会自动移除事件,不需要手动操作.</li>
+<li> v-for中绑定的都是同一个事件,除非有上千个,否则和事件代理性能差距不大.</li>
+<li> vue中已经自动完成.</li>
+</ol>
 <h3 id="js中的事件循环机制"><a href="#js中的事件循环机制" class="headerlink" title="js中的事件循环机制"></a>js中的事件循环机制</h3><h4 id="同步任务和异步任务"><a href="#同步任务和异步任务" class="headerlink" title="同步任务和异步任务"></a>同步任务和异步任务</h4><p>js一开始是设计在浏览器上使用的,在浏览器环境下操作dom,这种UI操作必须是<strong>单线程</strong>的,否则会带来很复杂的同步问题.</p>
 <p>但是由于部分IO操作比较慢,全部串行执行又会阻塞…<br>于是引入异步任务:</p>
 <blockquote>
@@ -248,9 +278,9 @@
 <p>这种运行机制称之为<strong>事件循环(EventLoop)</strong>.</p>
 <p>EventLoop:不停的从任务队列中取出任务放到主线程.</p>
 <ol>
-<li>选择一个异步任务,执行,</li>
-<li><strong>在浏览器环境下,此时会渲染页面,</strong></li>
-<li>回到步骤1,开始下一轮循环.</li>
+<li> 选择一个异步任务,执行,</li>
+<li> <strong>在浏览器环境下,此时会渲染页面,</strong></li>
+<li> 回到步骤1,开始下一轮循环.</li>
 </ol>
 <p>一个循环叫做一个tick.</p>
 <p>这里存在一个问题:</p>
@@ -260,24 +290,29 @@
 <h4 id="微任务和宏任务"><a href="#微任务和宏任务" class="headerlink" title="微任务和宏任务"></a>微任务和宏任务</h4><p>js引擎在异步任务基础上又实现了<strong>微任务</strong>.提供微任务队列和产生微任务的方法.<br>在每个异步任务执行完后,将微任务队列全部执行完(也包括微任务执行过程中新产生的微任务).</p>
 <p>以前的异步任务则称之为<strong>宏任务</strong>.</p>
 <ul>
-<li>宏任务：setInterval， setTimeout， DOM事件， Ajax请求</li>
-<li>微任务：Promise，async/await</li>
+<li>  宏任务：setInterval， setTimeout， DOM事件， Ajax请求</li>
+<li>  微任务：Promise，async/await</li>
 </ul>
 <p>这样如果在某次宏任务中,发起了异步任务(如网络请求),期望在请求结果回来后尽快得到使用,而不是排到异步任务队列的尾部,就可以使用微任务:<br>将数据处理回调加到微任务队列中,得以在当前周期内完成.</p>
 <h4 id="微任务机制在Vue中的应用"><a href="#微任务机制在Vue中的应用" class="headerlink" title="微任务机制在Vue中的应用:"></a>微任务机制在Vue中的应用:</h4><p>vue使用字典来维护修改数据触发的watcher.使用watcher的id去重.每个周期统一执行一次watcher的run方法.<br>主要有两个优势:</p>
 <ul>
-<li>去重:一个周期内,不管修改多少次数据,同一个watcher最终只触发一次更新.</li>
-<li>合并:将一个周期内的多个组件修改在一起执行,配合虚拟dom,减小性能损失.</li>
+<li>  去重:一个周期内,不管修改多少次数据,同一个watcher最终只触发一次更新.</li>
+<li>  合并:将一个周期内的多个组件修改在一起执行,配合虚拟dom,减小性能损失.</li>
 </ul>
 <p><strong>核心机制:nextTick</strong><br>nextTick本质上是将传入的回调放入队列,同时在首次执行nextTick方法时,创建一个微任务来处该理队列.这个微任务会在本次周期最后被执行.</p>
 <p><em>根据不同浏览器环境,使用不同机制来生成这个微任务.</em></p>
 <p>使用nextTick更新dom:</p>
 <ul>
-<li>watcher更新放入字典中,使用nextTick统一执行字典中所有watcher的run方法,run方法中使用虚拟dom进行对比,并更新真实dom(<strong>注意:更新dom并不代表渲染dom</strong>).</li>
-<li>由于更新dom的watcher在微任务中执行,为了能最快获取更新后的dom,vue也提供了nextTick方法给上层使用,只需在改变数据后执行nextTick,就能通过紧随其后的微任务获取到更新后的dom.</li>
+<li>  watcher更新放入字典中,使用nextTick统一执行字典中所有watcher的run方法,run方法中使用虚拟dom进行对比,并更新真实dom(<strong>注意:更新dom并不代表渲染dom</strong>).</li>
+<li>  由于更新dom的watcher在微任务中执行,为了能最快获取更新后的dom,vue也提供了nextTick方法给上层使用,只需在改变数据后执行nextTick,就能通过紧随其后的微任务获取到更新后的dom.</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">this</span>.content = <span class="hljs-string">&quot;改变后的&quot;</span>   <span class="hljs-comment">//触发watcher.update,对应watcher被加入队列,队列统一处理方法被加入微任务队列.</span><br>console.log(<span class="hljs-string">&quot;content改变前:&quot;</span>,<span class="hljs-keyword">this</span>.$refs.content.innerText)<br><span class="hljs-keyword">this</span>.$nextTick(() =&gt; &#123;<span class="hljs-comment">//继续加入微任务,由于在上面的微任务后面,因此可以得到更新后的dom</span><br>  console.log(<span class="hljs-string">&quot;content改变后:&quot;</span>,<span class="hljs-keyword">this</span>.$refs.content.innerText)<br>&#125;)<br></code></pre></td></tr></table></figure>
+<!---->
 
+<pre><code>      this.content = &quot;改变后的&quot;   //触发watcher.update,对应watcher被加入队列,队列统一处理方法被加入微任务队列.
+      console.log(&quot;content改变前:&quot;,this.$refs.content.innerText)
+      this.$nextTick(() =&gt; &#123;//继续加入微任务,由于在上面的微任务后面,因此可以得到更新后的dom
+        console.log(&quot;content改变后:&quot;,this.$refs.content.innerText)
+      &#125;)</code></pre>
 <blockquote>
 <p>注意:dom更新和UI渲染不是一回事.dom更新可以同步进行.UI渲染则要等到一次宏任务执行完毕.</p>
 </blockquote>
@@ -286,12 +321,12 @@
 <h5 id="requestIdleCallback"><a href="#requestIdleCallback" class="headerlink" title="requestIdleCallback"></a>requestIdleCallback</h5><p>requestIdleCallback 会在每次 检查是否要渲染（check） 结束, 发现距离下一帧的刷新还有时间， 就执行一下这个。如果时间不够，就下一帧再说。</p>
 <p>总结:</p>
 <ul>
-<li>异步任务都是通过队列来完成.不止js,几乎所有GUI程序的渲染主进程都是这样.</li>
-<li>为了插队,引入异步任务中的微任务.</li>
-<li>宏任务是宿主环境创建的任务,微任务是js引擎创建的任务.</li>
-<li>js引擎将微任务队列中的任务放在某个循环周期内一次执行完成,提供更加灵活的任务调度机制.</li>
-<li>vue通过队列将dom更新事件去重与合并,并通过微任务在下次渲染前执行.</li>
-<li>micro-task 结束 -&gt; requestAnimationFrame -&gt; requestIdleCallback -&gt; UI render</li>
+<li>  异步任务都是通过队列来完成.不止js,几乎所有GUI程序的渲染主进程都是这样.</li>
+<li>  为了插队,引入异步任务中的微任务.</li>
+<li>  宏任务是宿主环境创建的任务,微任务是js引擎创建的任务.</li>
+<li>  js引擎将微任务队列中的任务放在某个循环周期内一次执行完成,提供更加灵活的任务调度机制.</li>
+<li>  vue通过队列将dom更新事件去重与合并,并通过微任务在下次渲染前执行.</li>
+<li>  micro-task 结束 -&gt; requestAnimationFrame -&gt; requestIdleCallback -&gt; UI render</li>
 </ul>
 
             </div>
